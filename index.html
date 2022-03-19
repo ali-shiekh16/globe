@@ -8,9 +8,18 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="globalArea"></div>
-    <script src="https://threejs.org/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/giojs@2.2.1/build/gio.min.js"></script>
+    <div id="globalArea" class="globe-container"></div>
+
+    <div class="buttons">
+      <button class="btn btn--red" data-line-group="red">Red</button>
+      <button class="btn btn--blue" data-line-group="blue">Blue</button>
+      <button class="btn btn--grey" data-line-group="grey">Grey</button>
+      <button class="btn btn--white" data-line-group="white">White</button>
+    </div>
+
+    <script src="three.js"></script>
+    <script src="orbitcontrols.js"></script>
+    <script src="globe.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
