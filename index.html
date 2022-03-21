@@ -8,13 +8,23 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="globalArea" class="globe-container"></div>
-
-    <div class="buttons">
-      <button class="btn btn--red" data-line-group="red">Red</button>
-      <button class="btn btn--blue" data-line-group="blue">Blue</button>
-      <button class="btn btn--grey" data-line-group="grey">Grey</button>
-      <button class="btn btn--white" data-line-group="white">White</button>
+    <div class="main">
+      <div class="country-container">
+        <h2 id="countryName"></h2>
+      </div>
+      <div id="globalArea" class="globe-container"></div>
+      <div class="data-container">
+        <h3 class="data__country-name" id="countryNameList">
+          Select a country
+        </h3>
+        <ul class="list" id="citiesList"></ul>
+      </div>
+      <div class="buttons">
+        <button class="btn btn--red" data-line-group="red">Red</button>
+        <button class="btn btn--blue" data-line-group="blue">Blue</button>
+        <button class="btn btn--grey" data-line-group="grey">Grey</button>
+        <button class="btn btn--white" data-line-group="white">White</button>
+      </div>
     </div>
 
     <script src="three.js"></script>

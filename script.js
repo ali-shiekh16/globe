@@ -60,9 +60,6 @@ Array(2)
     linesBlue.add(line);
   });
 
-// COUNTRY PICK EVENT
-controller.onCountryPicked(country => {});
-
 function createLine(radius = 90, color = 'yellow') {
   const segments = 64, // 64
     material = new THREE.LineBasicMaterial({ color }),
@@ -125,3 +122,62 @@ function animate() {
 }
 
 animate();
+
+// COUNTRY PICK EVENT
+const countryHeading = document.querySelector('#countryName');
+const countryNameList = document.querySelector('#countryNameList');
+controller.onCountryPicked(country => {
+  countryHeading.innerText = countryNameList.innerText = country.name;
+  getCountryData(country);
+});
+
+const list = document.querySelector('#citiesList');
+
+async function getCountryData({ ISOCode: countryCode }) {
+  list.innerHTML = 'Loading...';
+  const dataSream = await fetch(
+    `https://geo-services-by-mvpc-com.p.rapidapi.com/cities/significant?sort=population%2Cdesc&language=en&countrycode=${countryCode}&pourcent=0.05&limit=10`,
+    {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-host': 'geo-services-by-mvpc-com.p.rapidapi.com',
+        'x-rapidapi-key': '09b9b8a67bmsh36f57e28c6fdfd0p17d991jsn07fc4e92911e',
+      },
+    }
+  );
+
+  const { data: cities } = await dataSream.json();
+
+  list.innerHTML = '';
+
+  cities.forEach(city => {
+    const li = createListItem(city.name, city.population);
+    list.appendChild(li);
+  });
+}
+
+function createListItem(cityName, value) {
+  const li = document.createElement('li');
+  li.classList.add('list__item');
+
+  const cityNameElement = document.createElement('span');
+  const cityValueElement = document.createElement('span');
+
+  cityNameElement.classList.add('city-name');
+  cityValueElement.classList.add('city-name');
+
+  const cityNameText = document.createTextNode(cityName);
+  const cityValueText = document.createTextNode(value);
+
+  cityNameElement.appendChild(cityNameText);
+  cityValueElement.appendChild(cityValueText);
+
+  li.append(cityNameElement, cityValueElement);
+
+  return li;
+}
+
+// <li class="list__item">
+//   <span class="city-name" id="cityName">Islamabad</span>
+//   <span class="list-item__value" id="value">9736</span>
+// </li>
