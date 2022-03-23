@@ -4,6 +4,7 @@ const container = document.querySelector('#globalArea');
 const controller = new GIO.Controller(container);
 
 controller.setTransparentBackground(true);
+controller.setHaloColor('#629C7F');
 
 controller.init();
 
@@ -13,13 +14,13 @@ const rotating = controller.getRotation();
 const mainGroup = new THREE.Group();
 
 // LINES GROUP
-const linesGrey = new THREE.Group();
+const linesYellow = new THREE.Group();
 const linesWhite = new THREE.Group();
 const linesRed = new THREE.Group();
 const linesBlue = new THREE.Group();
 
 // scene.add(linesGrey, linesWhite, linesRed, linesBlue);
-mainGroup.add(linesGrey, linesWhite, linesRed, linesBlue);
+mainGroup.add(linesYellow, linesWhite, linesRed, linesBlue);
 scene.add(mainGroup);
 rotating.add(mainGroup);
 // rotating.add(linesGrey, linesWhite, linesRed, linesBlue);
@@ -32,7 +33,7 @@ Array(3)
     line.position.x = 50 - 5 * index;
     line.rotation.y = (Math.PI / 3) * index;
 
-    linesGrey.add(line);
+    linesYellow.add(line);
   });
 
 // FOR WHITE LINES
@@ -100,8 +101,8 @@ function getLinesGroup(button) {
       return linesRed;
     case 'blue':
       return linesBlue;
-    case 'grey':
-      return linesGrey;
+    case 'yellow':
+      return linesYellow;
     case 'white':
       return linesWhite;
   }
@@ -109,18 +110,23 @@ function getLinesGroup(button) {
 
 const clock = new THREE.Clock();
 
-const lineGroups = [linesBlue, linesGrey, linesWhite, linesRed];
+const lineGroups = [linesBlue, linesYellow, linesWhite, linesRed];
 
 const sphere = controller.getSphere();
 mainGroup.add(sphere);
+
+let rotateSphere = true;
 
 function animate() {
   requestAnimationFrame(animate);
 
   const elapsed = clock.getElapsedTime();
-
-  // mainGroup.rotation.x = elapsed * (Math.PI / 10);
-  // mainGroup.rotation.y = elapsed * (Math.PI / 10);
+  const rotation = Math.PI / 10;
+  if (rotateSphere) {
+    mainGroup.rotation.y = elapsed * rotation;
+    mainGroup.rotation.x = elapsed * rotation;
+  }
+  // else mainGroup.rotation.y = 0;
 
   const rotationFactor = Math.PI / 6;
 
@@ -135,15 +141,24 @@ function animate() {
 animate();
 
 const camera = controller.getCamera();
+camera.position.z = 1200;
 
 // COUNTRY PICK EVENT
 const countryHeading = document.querySelector('#countryName');
 const countryNameList = document.querySelector('#countryNameList');
 
 controller.onCountryPicked(country => {
-  if (country.name === countryHeading.innerText && camera.position.z === 1100) {
-    gsap.to(camera.position, { z: 1400, duration: 0.8 });
-  } else gsap.to(camera.position, { z: 1100, duration: 0.8 });
+  const zoomedPosition = 1000;
+  if (
+    country.name === countryHeading.innerText &&
+    camera.position.z === zoomedPosition
+  ) {
+    rotateSphere = true;
+    gsap.to(camera.position, { z: 1200, duration: 0.8 });
+  } else {
+    rotateSphere = false;
+    gsap.to(camera.position, { z: zoomedPosition, duration: 0.8 });
+  }
 
   countryHeading.innerText = countryNameList.innerText = country.name;
   getCountryData(country);
@@ -194,10 +209,3 @@ function createListItem(cityName, value) {
 
   return li;
 }
-
-// <li class="list__item">
-//   <span class="city-name" id="cityName">Islamabad</span>
-//   <span class="list-item__value" id="value">9736</span>
-// </li>
-
-// console.log(controller.sphere);

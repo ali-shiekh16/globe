@@ -1,10 +1,10 @@
 :root {
   --color-primary: #17201c;
   --color-secondary: #456e59;
-  --color-red: #c94c4c;
+  --color-red: red;
   --color-white: #fff;
-  --color-grey: grey;
-  --color-blue: #7ab7cd;
+  --color-yellow: yellow;
+  --color-blue: blue;
   --color-teal: #579ba6;
   --color-dark: #171717;
 }
@@ -25,6 +25,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background: var(--color-dark);
+  background-image: url(https://wallpapercave.com/wp/J3uThO5.jpg);
 }
 
 .globe-container {
@@ -56,8 +57,8 @@ body {
   color: var(--color-blue);
 }
 
-.btn--grey {
-  color: var(--color-grey);
+.btn--yellow {
+  color: var(--color-yellow);
 }
 
 .btn--red {
@@ -70,7 +71,7 @@ body {
 
 .buttons {
   align-items: center;
-  background: var(--color-dark);
+  /* background: var(--color-dark); */
   display: flex;
   height: 10vh;
   justify-content: center;
