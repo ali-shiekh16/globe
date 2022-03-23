@@ -4345,6 +4345,10 @@ var GIO = (function (exports) {
         return controller.rotating;
       },
 
+      getSphere() {
+        return controller.sphere;
+      },
+
       getCamera: function () {
         return controller.camera;
       },
