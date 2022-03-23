@@ -117,11 +117,20 @@ mainGroup.add(sphere);
 
 let rotateSphere = true;
 
+const universe = createUniverse();
+scene.add(universe);
+
+rotating.add(universe);
+
 function animate() {
   requestAnimationFrame(animate);
 
   const elapsed = clock.getElapsedTime();
-  const rotation = Math.PI / 10;
+
+  universe.rotation.x = (elapsed * Math.PI) / 200;
+  universe.rotation.y = (elapsed * Math.PI) / 200;
+
+  const rotation = Math.PI / 30;
   if (rotateSphere) {
     mainGroup.rotation.y = elapsed * rotation;
     mainGroup.rotation.x = elapsed * rotation;
@@ -209,3 +218,18 @@ function createListItem(cityName, value) {
 
   return li;
 }
+
+// BACKGROUND
+
+function createUniverse() {
+  var universeMesh = new THREE.Mesh();
+  universeMesh.geometry = new THREE.SphereGeometry(500, 128, 128);
+  universeMesh.material = new THREE.MeshBasicMaterial({
+    map: new THREE.TextureLoader().load('galaxy.png'),
+    side: THREE.BackSide,
+  });
+
+  return universeMesh;
+}
+
+// console.log(universe);
