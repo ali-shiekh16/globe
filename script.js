@@ -176,7 +176,7 @@ controller.onCountryPicked(country => {
     camera.position.z === zoomedPosition
   ) {
     rotateSphere = true;
-    gsap.to(camera.position, { z: 1200, duration: 0.8, delay: 0.3 });
+    gsap.to(camera.position, { z: 1200, duration: 0.8, delay: 0.2 });
   } else {
     rotateSphere = false;
     gsap.to(camera.position, { z: zoomedPosition, duration: 0.8 });
