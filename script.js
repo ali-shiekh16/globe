@@ -30,7 +30,7 @@ Array(3)
   .fill()
   .forEach((val, index) => {
     const line = createLine(90, 'yellow');
-    line.position.x = 50 - 5 * index;
+    line.position.x = 50 - 25 * index;
     line.rotation.y = (Math.PI / 3) * index;
 
     linesYellow.add(line);
@@ -38,7 +38,7 @@ Array(3)
 
 // FOR WHITE LINES
 const whiteLine = createLine(90, '#fff');
-whiteLine.position.x = 50 - 10;
+whiteLine.position.x = 50 - 20;
 whiteLine.rotation.y = -(Math.PI / 4);
 
 linesWhite.add(whiteLine);
@@ -48,19 +48,31 @@ Array(3)
   .fill()
   .forEach((val, index) => {
     const line = createLine(90, 'red');
-    line.position.x = -50 + 5 * index;
+    line.position.x = -50 + 25 * index;
     line.rotation.y = -(Math.PI / 3) * index;
 
     linesRed.add(line);
   });
 
-// FOR SKY BLUE LINES
+// FOR BLUE LINES
 Array(2)
   .fill()
   .forEach((val, index) => {
-    const line = createLine(90, 'blue');
-    line.rotation.y = (Math.PI / 4) * index;
-    line.position.x = 50 - 10;
+    const line = createLine(101, 'blue');
+    line.rotation.y = (Math.PI / 4) * 1.5 * index;
+    line.position.x = 10 * index;
+    line.position.y = -2;
+    linesBlue.add(line);
+  });
+
+// FOR BLUE LINES
+Array(2)
+  .fill()
+  .forEach((val, index) => {
+    const line = createLine(105, 'red');
+    line.rotation.y = (Math.PI / 2) * (index + 1);
+    line.position.x = -1;
+    line.position.y = -10;
 
     linesBlue.add(line);
   });
@@ -69,6 +81,7 @@ function createLine(radius = 90, color = 'yellow') {
   const segments = 64, // 64
     material = new THREE.LineBasicMaterial({ color }),
     geometry = new THREE.CircleGeometry(radius, segments, 0, 2);
+  // geometry = new THREE.CircleGeometry(radius, segments, 0);
 
   geometry.vertices.shift();
 
@@ -130,11 +143,11 @@ function animate() {
   universe.rotation.x = (elapsed * Math.PI) / 200;
   universe.rotation.y = (elapsed * Math.PI) / 200;
 
-  const rotation = Math.PI / 30;
-  if (rotateSphere) {
-    mainGroup.rotation.y = elapsed * rotation;
-    mainGroup.rotation.x = elapsed * rotation;
-  }
+  // const rotation = Math.PI / 30;
+  // if (rotateSphere) {
+  //   mainGroup.rotation.y = elapsed * rotation;
+  //   mainGroup.rotation.x = elapsed * rotation;
+  // }
   // else mainGroup.rotation.y = 0;
 
   const rotationFactor = Math.PI / 6;
