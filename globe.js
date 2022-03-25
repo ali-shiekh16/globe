@@ -3185,6 +3185,7 @@ var GIO = (function (exports) {
 
       controller.rotationHandler.update();
 
+
       controller.renderer.clear();
       controller.renderer.render(controller.scene, controller.camera);
 

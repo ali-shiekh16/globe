@@ -26,7 +26,7 @@ rotating.add(mainGroup);
 // rotating.add(linesGrey, linesWhite, linesRed, linesBlue);
 
 // FOR YELLOW LINES
-Array(3)
+Array(6)
   .fill()
   .forEach((val, index) => {
     const line = createLine(90, 'yellow');
@@ -37,14 +37,18 @@ Array(3)
   });
 
 // FOR WHITE LINES
-const whiteLine = createLine(90, '#fff');
-whiteLine.position.x = 50 - 20;
-whiteLine.rotation.y = -(Math.PI / 4);
+Array(6)
+  .fill()
+  .forEach((val, index) => {
+    const whiteLine = createLine(90, '#fff');
+    whiteLine.position.x = 30;
+    whiteLine.rotation.y = -(Math.PI / 4) * (index + 1);
 
-linesWhite.add(whiteLine);
+    linesWhite.add(whiteLine);
+  });
 
 // FOR RED LINES
-Array(3)
+Array(5)
   .fill()
   .forEach((val, index) => {
     const line = createLine(90, 'red');
@@ -55,7 +59,7 @@ Array(3)
   });
 
 // FOR BLUE LINES
-Array(2)
+Array(5)
   .fill()
   .forEach((val, index) => {
     const line = createLine(101, 'blue');
@@ -74,7 +78,7 @@ Array(2)
     line.position.x = -1;
     line.position.y = -10;
 
-    linesBlue.add(line);
+    linesRed.add(line);
   });
 
 function createLine(radius = 90, color = 'yellow') {
@@ -143,12 +147,11 @@ function animate() {
   universe.rotation.x = (elapsed * Math.PI) / 200;
   universe.rotation.y = (elapsed * Math.PI) / 200;
 
-  // const rotation = Math.PI / 30;
-  // if (rotateSphere) {
-  //   mainGroup.rotation.y = elapsed * rotation;
-  //   mainGroup.rotation.x = elapsed * rotation;
-  // }
-  // else mainGroup.rotation.y = 0;
+  const rotation = Math.PI / 30;
+  if (rotateSphere) {
+    mainGroup.rotation.y = elapsed * rotation;
+    mainGroup.rotation.x = elapsed * rotation;
+  } else mainGroup.rotation.y = 0;
 
   const rotationFactor = Math.PI / 6;
 
