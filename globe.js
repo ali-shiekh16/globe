@@ -1240,8 +1240,8 @@ var GIO = (function (exports) {
 
         'void main() {',
 
-        'float intensity = pow( 0.5 - dot( vNormal, vec3( 0, 0, 1.0 ) ), 16.0 );',
-        'gl_FragColor = vec4( haloColor, 100.0 ) * intensity;',
+        'float intensity = pow( 0.5 - dot( vNormal, vec3( 0, 0, 1.0 ) ), 2.0 );',
+        'gl_FragColor = vec4( haloColor, 500.0 ) * intensity;',
 
         '}',
       ].join('\n'),
@@ -3184,7 +3184,6 @@ var GIO = (function (exports) {
       }
 
       controller.rotationHandler.update();
-
 
       controller.renderer.clear();
       controller.renderer.render(controller.scene, controller.camera);
