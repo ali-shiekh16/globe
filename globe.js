@@ -1240,8 +1240,9 @@ var GIO = (function (exports) {
 
         'void main() {',
 
-        'float intensity = pow( 0.5 - dot( vNormal, vec3( 0, 0, 1.0 ) ), 2.0 );',
-        'gl_FragColor = vec4( haloColor, 500.0 ) * intensity;',
+        'float intensity = 1.0 - dot( vNormal, vec3( 0, 0, 1.0 ) );',
+
+        'gl_FragColor = vec4( haloColor, 0.1 ) * intensity;',
 
         '}',
       ].join('\n'),
