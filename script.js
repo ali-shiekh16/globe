@@ -174,10 +174,10 @@ controller.onCountryPicked(country => {
     country.name === countryHeading.innerText &&
     camera.position.z === zoomedPosition
   ) {
-    rotateSphere = true;
+    controller.setAutoRotation(true, 1.5);
     gsap.to(camera.position, { z: 1200, duration: 0.8, delay: 0.2 });
   } else {
-    rotateSphere = false;
+    controller.setAutoRotation(false);
     gsap.to(camera.position, { z: zoomedPosition, duration: 0.8 });
   }
 
