@@ -4,7 +4,6 @@ const container = document.querySelector('#globalArea');
 const controller = new GIO.Controller(container);
 
 controller.setTransparentBackground(true);
-controller.setHaloColor('#629C7F');
 
 controller.init();
 

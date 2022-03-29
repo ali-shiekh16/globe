@@ -1242,6 +1242,7 @@ var GIO = (function (exports) {
       vertexShader: [
         `
 
+        
         varying vec3 vertexNormal;
         void main(){
         
@@ -1258,7 +1259,7 @@ var GIO = (function (exports) {
  varying vec3 vertexNormal;
   void main(){
     float intensity = pow(0.2 - dot(vertexNormal, vec3(0, 0, 1.0 )) , 2.0);
-    gl_FragColor = vec4(0.44, 0.83, 0.44, 1) * intensity;
+    gl_FragColor = vec4(0.55, 0.65, 0.44, 1) * intensity;
 }
 
 
