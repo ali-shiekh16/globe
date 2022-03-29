@@ -139,6 +139,8 @@ scene.add(universe);
 
 rotating.add(universe);
 
+controller.setAutoRotation(true, 1.5);
+
 function animate() {
   requestAnimationFrame(animate);
 
@@ -146,12 +148,6 @@ function animate() {
 
   universe.rotation.x = (elapsed * Math.PI) / 200;
   universe.rotation.y = (elapsed * Math.PI) / 200;
-
-  const rotation = Math.PI / 30;
-  if (rotateSphere) {
-    mainGroup.rotation.y = elapsed * rotation;
-    mainGroup.rotation.x = elapsed * rotation;
-  } else mainGroup.rotation.y = 0;
 
   const rotationFactor = Math.PI / 6;
 
